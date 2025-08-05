@@ -195,7 +195,7 @@ Submit the following as part of your solution:
 - In Active Directory usernames are known by two variables.
   - User Principal Name (username@domain.tld)
   - sAMAccountName (username or domain\username)
-- In OPNsense you will use sAMAccountName when configuring the VPN user auth.
+  - In OPNsense you will use sAMAccountName when configuring the VPN user auth.
  
 - Secure by design and from the ground up is the objective to remember.
 
