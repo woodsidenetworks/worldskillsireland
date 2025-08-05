@@ -15,9 +15,11 @@ Any such actions will result in immediate disqualification and may lead to remov
 
 Welcome to the **NimbleGrid Solutions** infrastructure challenge.
 
-Your task is to design and deploy secure inter-office networking using **OPNsense**, implementing both **site-to-site** and **remote access VPNs**, along with proper **routing**, **firewalling**, and — most importantly — **network segmentation discipline**.
+Your task is to design and deploy secure inter-office networking using **OPNsense**, implementing both **site-to-site** and **remote access VPNs**, along with proper **routing**, **firewalling**, **network segmentation discipline**, and — most importantly — **security**.
 
 This is a **realistic enterprise simulation**. Sloppy address planning, excessive supernetting, or overly permissive firewall rules will be penalised. Treat this as if you were deploying production infrastructure.
+
+This challange is designed to replicate those which you would see in Worldskills International
 
 ---
 
@@ -28,13 +30,13 @@ NimbleGrid operates the following infrastructure across Ireland:
 | Site Alias         | Location        | Role                                              |
 |--------------------|------------------|---------------------------------------------------|
 | **DC**             | Dublin Datacentre | Core services: AD, DNS, DHCP, file shares         |
-| **Site A**         | Dublin Office     | Main office (staff work here)                     |
+| **Site A**         | Dublin Office     | Main office (Staff work here)                     |
 | **Site B**         | Cork Office       | Satellite office (User B)                         |
 | **Remote WFH User**| Galway (remote)   | Remote engineer accessing via OpenVPN             |
 
 ---
 
-## 🌐 Subnet Plan
+## 🌐 IP Allocations
 
 > Each competitor is assigned a **WAN block**: `100.64.x.0/24`  
 > This represents your slice of the “imaginary internet” using CGNAT space.
@@ -57,17 +59,13 @@ NimbleGrid operates the following infrastructure across Ireland:
 
 📅 Thoughtful subnetting and clean segmentation will be assessed during marking.
 
+
+
 ---
 
-## 🔐 VPN Requirements
 
-> ⚡️ Extra points will be awarded for implementing hardening measures such as:
-> - Enforcing least privilege access via firewall rules and **RBAC**
-> - Using **LDAPS (LDAP over TLS/SSL)** instead of unencrypted LDAP
-> - Using **firewall aliases** and proper **naming/labelling** of rules
-> - Creating **port group aliases** to efficiently bundle related services into consolidated rules
-> - Explicitly allowing only needed services
-> - Use of multi-factor authentication (MFA) or strong certificate-based auth
+
+## 🔐 VPN 
 
 ### VPN Topology Design
 
@@ -89,12 +87,28 @@ The **OpenVPN tunnel must operate as a full-tunnel VPN**. All traffic from the *
 
 ## ⚙️ Technical Requirements
 
+
+### ✅ Active Directory Setup
+
+- Deploy a Windows Server instance in the **DC**.
+- Install the appropriate **Active Directory Domain Services** role and promote it to a **Domain Controller**.
+- Configure appropriate domain naming (e.g. `nimblegrid.local`).
+- Enable and test **LDAP** and **LDAPS** services.
+- Ensure DNS is installed and serving internal records for domain and infrastructure.
+- Set DNS forwarders or root hints to forward external DNS queries appropriately.
+- Create a baseline **OU structure** (e.g. Users, Computers, Admins).
+- Define **user roles** and implement **RBAC** as appropriate.
+- Use **Group Policy** to harden the domain and apply security policies.
+- Make sure the AD server is reachable from authorised subnets only.
+
+
 ### ✅ VPN Setup
 
 - Configure **WireGuard** between **Site A**, **Site B**, and **DC**
 - Configure **OpenVPN** at the **DC**
   - Assign static IP to **Remote WFH User**
   - Enforce least privilege by limiting to specific destinations and ports
+
 
 ### ✅ Routing
 
@@ -117,6 +131,18 @@ The **OpenVPN tunnel must operate as a full-tunnel VPN**. All traffic from the *
 
 - Avoid supernetting (using large subnets such as /16)
 - Avoid overlaps and keep headroom for future growth
+
+
+> ⚡️ Extra points will be awarded for implementing hardening measures such as:
+> - Enforcing least privilege access via firewall rules and **RBAC** with proper OU structure
+> - Using **LDAPS (LDAP over TLS/SSL)** instead of unencrypted LDAP
+> - Using **firewall aliases** and proper **naming/labelling** of rules
+> - Creating **port group aliases** to efficiently bundle related services into consolidated rules
+> - Explicitly allowing only needed services
+> - Using certificate based authentication + Active Directory backed username/password authenticaiton
+> - Individual user certificates
+> - Strict CN (common name) checking on certificates with username as CN
+> - Use of multi-factor authentication (MFA) or strong certificate-based auth
 
 ---
 
@@ -143,33 +169,37 @@ Submit the following as part of your solution:
 
 ---
 
-## 🧠 Bonus Tasks (Optional)
-
-- Implement **split tunnelling** for the Remote WFH User
-- Set up **internal DNS** resolution using the AD DNS server
-- Deploy **Suricata** or **ntopng** on OPNsense for traffic inspection
-- Use **aliases and rule groups** for maintainable firewall rules
-- Use **port group aliases** for services like AD, DNS, LDAPS, etc.
-- Simulate VLANs or tagged interfaces in Site A
-- Use **LDAPS**, secure administrative ports, and strict certificate-based VPN auth
-
----
-
 ## 📊 Marking Scheme
 
 | Category               | Weight |
 |------------------------|--------|
-| Proper subnetting      | 25%    |
-| VPN configuration      | 25%    |
-| Routing completeness   | 20%    |
-| Firewall correctness   | 15%    |
-| Documentation & tests  | 15%    |
+| Security               | 20%    |
+| VPN Configuration      | 10%    |
+| Routing                | 10%    |
+| Firewall Rules         | 10%    |
+| Proper Subnetting      | 10%    |
+| Testing                | 20%    |
 
 ---
 
-## 🧥 Additional Notes
+## 🧥 Additional Notes & Tips
 
 - No need to simulate public IPs — `100.64.x.0/24` is your internet
+- If you have issues getting the pings to reply correctly then go back to basics
+  - Check the tunnel is up,
+  - Check you can ping the tunnel interfaces
+  - Check if you can ping the subnet interface gateways
+  - In other words, check each step of the route one by one.
+  - Check firewall and tracert to troubleshoot
+ 
+- In Active Directory usernames are known by two variables.
+  - User Principal Name (username@domain.tld)
+  - sAMAccountName (username or domain\username)
+- In OPNsense you will use sAMAccountName when configuring the VPN user auth.
+ 
+- Secure by design and from the ground up is the objective to remember.
+
+- Theres a strong possibility you won't complete every task / step at the end, and a strong chance some of it may not be perfect. This is a tough challange that is designed to test your problem solving and time management skills. Just relax and keep going. If you don't get something fully completed or working, document what you did. You can still get marks for a good setup even if you did not get a ping reply.
 
 ---
 
