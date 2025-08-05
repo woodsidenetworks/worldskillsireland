@@ -29,10 +29,10 @@ NimbleGrid operates the following infrastructure across Ireland:
 
 | Site Alias         | Location        | Role                                              |
 |--------------------|------------------|---------------------------------------------------|
-| **DC**             | Dublin Datacentre | Core services: AD, DNS, DHCP, file shares         |
-| **Site A**         | Dublin Office     | Main office (Staff work here)                     |
-| **Site B**         | Cork Office       | Satellite office (User B)                         |
-| **Remote WFH User**| Galway (remote)   | Remote engineer accessing via OpenVPN             |
+| **DC**             | Dublin Datacentre | Core services: AD, DNS, DHCP, SMB File Shares    |
+| **Site A**         | Dublin Office     | Main office (Staff work here)                    |
+| **Site B**         | Cork Office       | Satellite office (User B)                        |
+| **Remote WFH User**| Galway (remote)   | Remote engineer accessing via OpenVPN            |
 
 ---
 
