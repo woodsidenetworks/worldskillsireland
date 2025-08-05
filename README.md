@@ -174,9 +174,9 @@ Submit the following as part of your solution:
 | Category               | Weight |
 |------------------------|--------|
 | Security               | 20%    |
-| VPN Configuration      | 10%    |
-| Routing                | 10%    |
-| Firewall Rules         | 10%    |
+| VPN Configuration      | 20%    |
+| Routing                | 15%    |
+| Firewall Rules         | 15%    |
 | Proper Subnetting      | 10%    |
 | Testing                | 20%    |
 
