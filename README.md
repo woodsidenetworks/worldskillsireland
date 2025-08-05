@@ -1,4 +1,4 @@
-# worldskillsireland
+# Worldskills National Competition
 
 # 🏁 NimbleGrid Solutions — VPN, Routing and Segmentation Challenge
 
@@ -115,8 +115,7 @@ The **OpenVPN tunnel must operate as a full-tunnel VPN**. All traffic from the *
 
 ### ✅ Subnetting Best Practices
 
-- No single interface should use a `/16`
-- Use `/24` or smaller per segment
+- Avoid supernetting (using large subnets such as /16)
 - Avoid overlaps and keep headroom for future growth
 
 ---
@@ -170,11 +169,7 @@ Submit the following as part of your solution:
 
 ## 🧥 Additional Notes
 
-- You may simulate WAN links using NAT or internal-only virtual networks
-- Accepted platforms:
-  - **VirtualBox**, **Proxmox**, **VMware**, **GNS3**, **EVE-NG**
 - No need to simulate public IPs — `100.64.x.0/24` is your internet
-- Dynamic DNS is optional but encouraged for realism
 
 ---
 
