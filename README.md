@@ -6,7 +6,7 @@
 
 The infrastructure for this challenge is hosted by **Woodside Networks**.  
 
-**❌ PROHIBITED:** Any actions that would be harmful to the infrastructure or impact other competitors.  
+❌ Any actions that would be harmful to the infrastructure or impact other competitors are **STRICTLY PROHIBITED**.  
 
 This includes, but is not limited to:  
 - ⛏️ **Cryptocurrency mining** (e.g. Bitcoin mining)  
