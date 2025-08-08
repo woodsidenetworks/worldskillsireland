@@ -6,7 +6,7 @@
 
 The infrastructure for this challenge is hosted by **Woodside Networks**.  
 
-<span style="color:red; font-weight:bold">It is strictly prohibited</span> to carry out any actions that would be harmful to the infrastructure or impact other competitors.  
+<span style="color:red; font-weight:bold">PROHIBITED</span> actions include **any** activity that would be harmful to the infrastructure or impact other competitors.  
 
 This includes, but is not limited to:  
 - ⛏️ Cryptocurrency mining (e.g. Bitcoin mining)  
@@ -14,7 +14,7 @@ This includes, but is not limited to:
 - 🛑 Attempting to exploit or tamper with systems such as the WAN gateway, shared network resources, or the underlying hosting platform  
 - 🎯 Attacking, scanning, or interfering with other competitors’ systems or challenge environments  
 
-Any such activity will result in **immediate disqualification** and may lead to **removal from the competition**.
+Any such activity will result in <span style="color:red; font-weight:bold">IMMEDIATE DISQUALIFICATION</span> and may lead to <span style="color:red; font-weight:bold">REMOVAL FROM THE COMPETITION</span>.
 
 ---
 
