@@ -25,13 +25,15 @@ Recently, Blackthorn provided **technology critical to the production of drones*
 
 ---
 
-## 📜 The backstory
-Earlier this year, a contractor carried out a preventive security check. Several weaknesses were found, but the company decided against fixing them at the time due to the associated cost.
+## 📜 Backstory
+Earlier this year, a contractor carried out a preventive security check. Several weaknesses were found, but the company decided against fixing them at the time.
 
-Now, with the **NIS2 Directive** transcribed into Irish law — bringing with it **potential criminal liability for company directors** in cases of serious cybersecurity failings — and given Blackthorn’s involvement in Ukraine’s defense supply chain increasing the risk of an attack, the board has changed course.  
+Now, with the **NIS2 Directive** transcribed into Irish law — bringing with it **potential criminal liability for company directors** in cases of serious cybersecurity failings — and given Blackthorn’s involvement in Ukraine’s defense supply chain, the board has changed course.  
 
-The **previous contractor’s findings have been fully approved for remediation**, and you’ve been brought in to both **implement those changes** and **carry out a deeper assessment** to find any other security gaps worth addressing in the next phase.
+---
 
+## 🧭 Your Role
+You have been brought in to implement the approved changes from the last assessment and conduct a deeper, end-to-end evaluation of Blackthorn Defense’s security posture. This engagement will require you to review network architecture, firewall configurations, identity and access controls, and system hardening across their datacentre, headquarters, and production facility. You will need to verify that all agreed fixes are applied correctly, test their effectiveness, and ensure they meet both operational needs and NIS2 compliance requirements. In addition, you are expected to identify and document any further weaknesses or misconfigurations that could be exploited by state-sponsored threat actors, providing the board with a clear, prioritised remediation plan for the next phase of security improvements.
 ---
 
 ## ✅ Approved findings to be rectified
