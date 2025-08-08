@@ -1,6 +1,6 @@
-# Worldskills National Competition
+# 🛡️ Scenario: Blackthorn Defense Ltd. — Second Pass Security Audit
 
-# 🏁 NimbleGrid Solutions — VPN, Routing and Segmentation Challenge
+---
 
 # 🚨 IMPORTANT — CHALLENGE INFRASTRUCTURE RULES
 
@@ -16,202 +16,81 @@ This includes, but is not limited to:
 
 **⚠️ Any such activity will result in _IMMEDIATE DISQUALIFICATION_ and may lead to _REMOVAL FROM THE COMPETITION_.**
 
----
+## 🏢 Company profile
+Blackthorn Defense Ltd. is an Irish defense technology manufacturer with headquarters in Dublin and a production facility in Cork. 
 
-## 📘 Overview
+The company designs and supplies advanced battlefield communication systems, drone platforms, and electronic countermeasure units for allied nations.
 
-Welcome to the **NimbleGrid Solutions** infrastructure challenge.
-
-Your task is to design and deploy secure inter-office networking using **OPNsense**, implementing both **site-to-site** and **remote access VPNs**, along with proper **routing**, **firewalling**, **network segmentation discipline**, and — most importantly — **security**.
-
-This is a **realistic enterprise simulation**. Sloppy address planning, excessive supernetting, or overly permissive firewall rules will be penalised. Treat this as if you were deploying production infrastructure.
-
-This challange is designed to replicate those which you would see in Worldskills International
+Recently, Blackthorn provided **technology critical to the production of drones** used by Ukraine’s armed forces, significantly increasing their visibility to — and potential targeting by — **Russian state-sponsored cyber actors**.
 
 ---
 
-## 🏢 Network Layout
+## 📜 The backstory
+Earlier this year, a contractor carried out a preventive security check. Several weaknesses were found, but the company decided against fixing them at the time due to the associated cost.
 
-NimbleGrid operates the following infrastructure across Ireland:
+Now, with the **NIS2 Directive** transcribed into Irish law — bringing with it **potential criminal liability for company directors** in cases of serious cybersecurity failings — and given Blackthorn’s involvement in Ukraine’s defense supply chain increasing the risk of an attack, the board has changed course.  
 
-| Site Alias         | Location        | Role                                              |
-|--------------------|------------------|---------------------------------------------------|
-| **DC**             | Dublin Datacentre | Core services: AD, DNS, DHCP, SMB                |
-| **Site A**         | Dublin Office     | Main office (Staff work here)                    |
-| **Site B**         | Cork Office       | Satellite office (User B)                        |
-| **Remote WFH User**| Galway (remote)   | Remote engineer accessing via OpenVPN            |
+The **previous contractor’s findings have been fully approved for remediation**, and you’ve been brought in to both **implement those changes** and **carry out a deeper assessment** to find any other security gaps worth addressing in the next phase.
 
 ---
 
-## 🌐 IP Allocations
+## ✅ Approved findings to be rectified
 
-> Each competitor is assigned a **WAN block**: `100.64.x.0/24`  
-> This represents your slice of the “imaginary internet” using CGNAT space.
+### 1. 🔐 Directory Services & Authentication
+- *[To be filled]*
 
-| Site Alias         | LAN Subnet         | WAN IP             | WAN Gateway     |
-|--------------------|--------------------|---------------------|------------------|
-| DC                 | `10.10.0.0/16`      | `100.64.x.10`       | `100.64.x.1`     |
-| Site A             | `172.16.10.0/24`    | `100.64.x.11`       | `100.64.x.1`     |
-| Site B             | `172.16.20.0/24`    | `100.64.x.12`       | `100.64.x.1`     |
-| Remote WFH User    | `100.64.x.50`       | `100.64.x.50`       | `100.64.x.1`     |
+### 2. 👥 Access Control
+- *[To be filled]*
 
-> ⚠️ You are assigned a large subnet allocation for the **DC**, but:
->
-> - **Do not assign the entire allocation or a large supernet to any interface**
-> - Subnet carefully into smaller logical ranges, for example:
->   - A subnet for core infrastructure (e.g. AD, DNS)
->   - A subnet for VPN tunnel endpoints
->   - A subnet for remote access or DMZ
-> - Leave room for VLANs, user/device isolation, or future services
+### 3. 🌐 Network Security
+- *[To be filled]*
 
-📅 Thoughtful subnetting and clean segmentation will be assessed during marking.
-
-
+### 4. 🛠️ General Hardening
+- *[To be filled]*
 
 ---
 
+## 🖥️ Technical details
+Blackthorn Defense maintains a **dedicated rack** in a commercial datacentre, which houses their critical servers, storage, and main firewall.  
 
+They also have two key sites — the headquarters in Dublin and the production facility in Cork 
+These sites are securely connected to the datacentre via **WireGuard tunnels**, forming a hub-and-spoke network with the DC at its core.
 
-## 🔐 VPN 
-
-### VPN Topology Design
-
-The **OpenVPN tunnel must operate as a full-tunnel VPN**. All traffic from the **Remote WFH User**, including internet-bound traffic, must be routed through the **DC firewall** to ensure traffic is protected from snooping on untrusted networks (e.g. public Wi-Fi).
-
-- **WireGuard tunnels** must be established:
-  - From **Site A → DC**
-  - From **Site B → DC**
-- **OpenVPN** server must run at the **DC**:
-  - The **Remote WFH User** connects directly to the **DC firewall**
-  - The VPN must function as a **full-tunnel**, forcing all traffic through the DC
-  - Only minimal service-specific rules should be applied to internal resources
-  - General internet access should also be securely routed through the DC gateway
-  - The VPN-assigned IP is `100.64.x.50` from the allocated WAN range
-
-> ♻️ All inter-site and remote traffic must pass through the DC. The DC must handle routing, DNS, and firewalling between all internal networks.
+- **Private address ranges**:
+  - Datacentre: `10.10.0.0/16`
+  - Dublin headquarters: `172.16.0.0/16`
+  - Cork factory: `172.17.0.0/16`
+- **Connectivity**: Headquarters and factory connected to the datacentre via WireGuard tunnels.
+- **Public addressing**: All public IPs in the `100.100.X.0/24` range (X = competitor number).
+- **Access**:
+  - 🖥️ Jump host inside the DC
+  - 📡 Permission to scan all private ranges
+  - 📄 Administrator access to **firewall configurations**
+  - 📂 Administrator access to **Active Directory**
 
 ---
 
-## ⚙️ Technical Requirements
+## 🔑 Login credentials
+> **Note:** These accounts are provided for ease of use during the challenge. They are **not** intended to be part of the assessment scope or considered a security finding.
 
+- **Firewalls**  
+  - Username: `root`  
+  - Password: `opnsense`  
 
-### ✅ Active Directory Setup
-
-- Deploy a Windows Server instance in the **DC**.
-- Install the appropriate **Active Directory Domain Services** role and promote it to a **Domain Controller**.
-- Configure appropriate domain naming (e.g. `nimblegrid.local`).
-- Enable and test **LDAP** and **LDAPS** services.
-- Ensure DNS is installed and serving internal records for domain and infrastructure.
-- Set DNS forwarders or root hints to forward external DNS queries appropriately.
-- Create a baseline **OU structure** (e.g. Users, Computers, Admins).
-- Define **user roles** and implement **RBAC** as appropriate.
-- Use **Group Policy** to harden the domain and apply security policies.
-- Make sure the AD server is reachable from authorised subnets only.
-
-
-### ✅ VPN Setup
-
-- Configure **WireGuard** between **Site A**, **Site B**, and **DC**
-- Configure **OpenVPN** at the **DC**
-  - Assign static IP to **Remote WFH User**
-  - Enforce least privilege by limiting to specific destinations and ports
-
-
-### ✅ Routing
-
-- Ensure:
-  - Site A ↔ DC communication
-  - Site B ↔ DC communication
-  - Remote WFH User ↔ permitted services only
-  - Return traffic flows correctly
-
-### ✅ Firewall Rules
-
-- Define clear firewall policies per zone and interface:
-  - Allow VPN traffic on WAN
-  - Define **per-interface LAN rules**
-  - Create **aliases** for grouped services and ports (e.g. port group aliases for domain services)
-  - Clearly label all rules and describe their purpose
-  - Restrict Remote WFH User to authorised services and ports only
-
-### ✅ Subnetting Best Practices
-
-- Avoid supernetting (using large subnets such as /16)
-- Avoid overlaps and keep headroom for future growth
-
-
-> ⚡️ Extra points will be awarded for implementing hardening measures such as:
-> - Enforcing least privilege access via firewall rules and **RBAC** with proper OU structure
-> - Using **LDAPS (LDAP over TLS/SSL)** instead of unencrypted LDAP
-> - Using **firewall aliases** and proper **naming/labelling** of rules
-> - Creating **port group aliases** to efficiently bundle related services into consolidated rules
-> - Explicitly allowing only needed services
-> - Using certificate based authentication + Active Directory backed username/password authenticaiton
-> - Individual user certificates
-> - Strict CN (common name) checking on certificates with username as CN
-> - Use of multi-factor authentication (MFA) or strong certificate-based auth
+- **Active Directory**  
+  - Username: `administrator`  
+  - Password: `Passw0rd!$`
 
 ---
 
-## 🧩 Test Scenarios
-
-| Source             | Destination          | Expected Result | Path                          |
-|--------------------|----------------------|------------------|-------------------------------|
-| Remote WFH User    | DC (LDAPS, DNS)      | ✅ Success       | OpenVPN                       |
-| Remote WFH User    | Site B (general LAN) | ❌ Blocked       | OpenVPN → DC → WireGuard     |
-| Site B             | DC                   | ✅ Success       | WireGuard site-to-site        |
-| Site A             | DC                   | ✅ Success       | WireGuard site-to-site        |
+## 🎯 Your mission
+1. **Rectify the findings** from the previous assessment.
+2. Perform a **full security assessment** of the environment.
+3. Identify **any new issues** that should be considered for remediation in the next phase.
 
 ---
 
-## 📆 Submission Checklist
-
-Submit the following as part of your solution:
-
-- `/docs/network-diagram.png` — A labelled diagram of all interfaces, tunnels, subnets
-- `/configs/*.txt` — Configuration exports or CLI outputs (e.g. from OPNsense)
-- `/tests/ping-results.txt` — Output of ping tests, DNS lookups, and AD join tests
-- `/README.md` — Summary of your network design, firewall rules, and routing decisions
-- *(Optional)* OPNsense `.xml` backup files for each node
-
----
-
-## 📊 Marking Scheme
-
-| Category               | Weight |
-|------------------------|--------|
-| Security               | 20%    |
-| VPN Configuration      | 20%    |
-| Routing                | 15%    |
-| Firewall Rules         | 15%    |
-| Proper Subnetting      | 10%    |
-| Testing                | 20%    |
-
----
-
-## 🧥 Additional Notes & Tips
-
-- No need to simulate public IPs — `100.64.x.0/24` is your internet
-- If you have issues getting the pings to reply correctly then go back to basics
-  - Check the tunnel is up,
-  - Check you can ping the tunnel interfaces
-  - Check if you can ping the subnet interface gateways
-  - In other words, check each step of the route one by one.
-  - Check firewall and tracert to troubleshoot
- 
-- In Active Directory usernames are known by two variables.
-  - User Principal Name (username@domain.tld)
-  - sAMAccountName (username or domain\username)
-  - In OPNsense you will use sAMAccountName when configuring the VPN user auth.
- 
-- Secure by design and from the ground up is the objective to remember.
-
-- Theres a strong possibility you won't complete every task / step at the end, and a strong chance some of it may not be perfect. This is a tough challange that is designed to test your problem solving and time management skills. Just relax and keep going. If you don't get something fully completed or working, document what you did. You can still get marks for a good setup even if you did not get a ping reply.
-
----
-
-## 🔟 Final Advice
-
-Segment properly.  
-Route deliberately.  
-Secure everything. 🛡️
+## 📑 Deliverables
+- **Implementation report** detailing how the approved fixes were applied and verified.
+- **New findings report** with supporting evidence and remediation recommendations.
+- **Executive summary** linking remaining risks to NIS2 obligations, defense-sector targeting risks, and potential board liability.
