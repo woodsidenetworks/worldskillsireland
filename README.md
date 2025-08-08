@@ -2,14 +2,21 @@
 
 # 🏁 NimbleGrid Solutions — VPN, Routing and Segmentation Challenge
 
-_This challenge infrastructure is provided by **Woodside Networks** for competition use._
+# 🚨 Important — Challenge Infrastructure Rules
 
-🚨 **Important**: Competitors must **not** carry out any actions that would be harmful to the infrastructure. This includes, but is not limited to:
-- Cryptocurrency mining (e.g. Bitcoin mining)
-- Port scanning or attacking infrastructure components outside your assigned environment
-- Attempting to exploit or tamper with systems such as the WAN gateway or other shared network resources
+The infrastructure for this challenge is hosted by **Woodside Networks**.  
 
-Any such actions will result in immediate disqualification and may lead to removal from the competition.
+<span style="color:red; font-weight:bold">It is strictly prohibited</span> to carry out any actions that would be harmful to the infrastructure or impact other competitors.  
+
+This includes, but is not limited to:  
+- ⛏️ Cryptocurrency mining (e.g. Bitcoin mining)  
+- 🔍 Port scanning or attacking infrastructure components **outside your assigned environment**  
+- 🛑 Attempting to exploit or tamper with systems such as the WAN gateway, shared network resources, or the underlying hosting platform  
+- 🎯 Attacking, scanning, or interfering with other competitors’ systems or challenge environments  
+
+Any such activity will result in **immediate disqualification** and may lead to **removal from the competition**.
+
+---
 
 ## 📘 Overview
 
