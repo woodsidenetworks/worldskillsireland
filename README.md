@@ -34,6 +34,7 @@ Now, with the **NIS2 Directive** transcribed into Irish law — bringing with it
 
 ## 🧭 Your Role
 You have been brought in to implement the approved changes from the last assessment and conduct a deeper, end-to-end evaluation of Blackthorn Defense’s security posture. This engagement will require you to review network architecture, firewall configurations, identity and access controls, and system hardening across their datacentre, headquarters, and production facility. You will need to verify that all agreed fixes are applied correctly, test their effectiveness, and ensure they meet both operational needs and NIS2 compliance requirements. In addition, you are expected to identify and document any further weaknesses or misconfigurations that could be exploited by state-sponsored threat actors, providing the board with a clear, prioritised remediation plan for the next phase of security improvements.
+
 ---
 
 ## ✅ Approved findings to be rectified
