@@ -26,7 +26,7 @@ Recently, Blackthorn provided **technology critical to the production of drones*
 ---
 
 ## 📜 Backstory
-Earlier this year, a contractor carried out a preventive security check. Several weaknesses were found, but the company decided against fixing them at the time.
+Earlier this year, a contractor carried out a preventive security check. Several weaknesses were found, but the company decided against fixing them at the time due to the associated cost.
 
 Now, with the **NIS2 Directive** transcribed into Irish law — bringing with it **potential criminal liability for company directors** in cases of serious cybersecurity failings — and given Blackthorn’s involvement in Ukraine’s defense supply chain, the board has changed course.  
 
