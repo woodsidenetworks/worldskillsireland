@@ -68,7 +68,7 @@ These sites are securely connected to the datacentre via **WireGuard tunnels**, 
   - Dublin headquarters: `172.16.0.0/16`
   - Cork factory: `172.17.0.0/16`
 - **Connectivity**: Headquarters and factory connected to the datacentre via WireGuard tunnels.
-- **Public addressing**: All public IPs in the `100.100.X.0/24` range (X = competitor number).
+- **Public addressing**: All public IPs in the `100.100.0.0/24` range
 - **Access**:
   - 🖥️ Jump host inside the DC
   - 📡 Permission to scan all private ranges
