@@ -44,16 +44,16 @@ In addition to this, it is expected that you will conduct a fresh, end-to-end ev
 ## ✅ Approved findings to be rectified
 
 ### 1. 🔐 Directory Services & Authentication
-- *[To be filled]*
+  - *[To be filled]*
 
 ### 2. 👥 Access Control
-- *[To be filled]*
+  - *[To be filled]*
 
 ### 3. 🌐 Network Security
-- *[To be filled]*
+  - *[To be filled]*
 
 ### 4. 🛠️ General Hardening
-- *[To be filled]*
+  - *[To be filled]*
 
 ---
 
