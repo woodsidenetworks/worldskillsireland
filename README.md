@@ -11,7 +11,7 @@ The infrastructure for this challenge is hosted by **Woodside Networks**.
 This includes, but is not limited to:  
 - ⛏️ **Cryptocurrency mining** (e.g. Bitcoin mining)  
 - 🔍 **Port scanning** or attacking infrastructure components **outside your assigned environment**  
-- 🛑 **Exploiting or tampering** with systems such as the WAN gateway, shared network resources, or the hosting platform  
+- 🛑 **Exploiting or tampering** with systems such as the WAN gateway/network, shared network resources, or the hosting platform  
 - 🎯 **Attacking, scanning, or interfering** with other competitors’ systems or challenge environments  
 
 **⚠️ Any such activity will result in _IMMEDIATE DISQUALIFICATION_ and may lead to _REMOVAL FROM THE COMPETITION_.**
