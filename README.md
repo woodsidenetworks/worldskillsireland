@@ -44,16 +44,19 @@ In addition to this, it is expected that you will conduct a fresh, end-to-end ev
 ## ✅ Approved findings to be rectified
 
 ### 1. 🔐 Directory Services & Authentication
-  - *[To be filled]*
+  - Disable NTLM
+  - Enforce LDAPS only, (You need to generate a CA in openssl for this)
+  - Ensure only admins can join machines to the domain
 
 ### 2. 👥 Access Control
-  - *[To be filled]*
+  - Create service account, create admin user, create LDAPS query to log users into the firewall, ONLY the admin users should be synched
 
 ### 3. 🌐 Network Security
   - *[To be filled]*
 
 ### 4. 🛠️ General Hardening
-  - *[To be filled]*
+  - Disable AI (copilot) across the domain
+  - Disable recall
 
 ---
 
